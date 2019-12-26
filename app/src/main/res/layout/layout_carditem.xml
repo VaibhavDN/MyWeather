@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/forecast_ll_h0CardItem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_below="@+id/cityTextView">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/forecast_cardView"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="20sp"
+        android:padding="10sp"
+        app:cardCornerRadius="20sp"
+        app:cardElevation="5sp"
+        android:transitionName="@string/cardTransition">
+        <LinearLayout
+            android:id="@+id/forecast_ll_v1CardItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5sp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/forecast_ll_dayCardItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/dayCardItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"
+                    android:text="@string/day"
+                    android:padding="5sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/forecast_ll_h1CardItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/weatherConditionCardItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"
+                    android:text="@string/condition"
+                    android:padding="5sp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/forecast_ll_h2CardItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:baselineAligned="false"
+                android:layout_gravity="center">
+
+                <LinearLayout
+                    android:id="@+id/dashboard_ll_Inside1CardItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="5sp"
+                    android:layout_weight="0.5">
+
+                    <TextView
+                        android:id="@+id/maxTempTextViewCardItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/maxminpahumid"
+                        android:textColor="@color/lightBlue"
+                        android:textStyle="bold"
+                        android:gravity="start"
+                        android:padding="5sp"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"/>
+
+                    <TextView
+                        android:id="@+id/minTempTextViewCardItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/maxminpahumid"
+                        android:textColor="@color/lightBlue"
+                        android:textStyle="bold"
+                        android:gravity="start"
+                        android:padding="5sp"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/forecast_ll_Inside2CardItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:layout_marginStart="5sp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/pressureTextViewCardItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pressure"
+                        android:textColor="@color/lightBlue"
+                        android:textStyle="bold"
+                        android:gravity="start"
+                        android:padding="5sp"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
+
+                    <TextView
+                        android:id="@+id/humidityTextViewCardItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/humidity"
+                        android:textColor="@color/lightBlue"
+                        android:textStyle="bold"
+                        android:gravity="start"
+                        android:padding="5sp"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/forecast_ll_h3CardItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:baselineAligned="false"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/windTextViewCardItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Wind"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    android:gravity="start"
+                    android:padding="5sp"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/forecast_ll_h4CardItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:baselineAligned="false"
+                android:layout_gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="0.2">
+                    <TextView
+                        android:id="@+id/windSpeedTextViewCardItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/windSpeed"
+                        android:textColor="@color/lightBlue"
+                        android:textStyle="bold"
+                        android:gravity="start"
+                        android:padding="5sp"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="0.8">
+                    <TextView
+                        android:id="@+id/windDirectionTextViewCardItem"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/windDirection"
+                        android:textColor="@color/lightBlue"
+                        android:textStyle="bold"
+                        android:gravity="start"
+                        android:padding="5sp"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/forecast_ll_h5CardItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:baselineAligned="false"
+                android:layout_gravity="center">
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

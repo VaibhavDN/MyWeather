@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#7459ae</color>
+    <color name="colorPrimaryDark">#7459ae</color>
+    <color name="colorAccent">#CF3E69</color>
+    <color name="white">#FFFFFF</color>
+    <color name="translucent">#201a001a</color>
+    <color name="lightBlue">#1F8CA8</color>
+    <color name="orange">#FF5722</color>
+    <color name="purple">#6a0dad</color>
+    <color name="maroon">#800000</color>
+    <color name="transparent">#00FFFFFF</color>
+</resources>
