@@ -3,6 +3,7 @@ package com.vaibhav.myweather;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -124,6 +125,11 @@ public class Forecast extends AppCompatActivity {
 
                 LineChart chart = findViewById(R.id.weatherChart);
                 LineDataSet lineDataSet = new LineDataSet(xyValues, "WeatherInfo");
+                lineDataSet.setColor(ContextCompat.getColor(getApplicationContext() ,R.color.colorPrimary));
+                lineDataSet.setCircleColor(ContextCompat.getColor(getApplicationContext() ,R.color.colorAccent));
+                lineDataSet.setLineWidth(2.0f);
+                lineDataSet.setValueTextColor(ContextCompat.getColor(getApplicationContext() ,R.color.colorPrimary));
+                lineDataSet.setValueTextSize(10.0f);
                 ArrayList<ILineDataSet> dataSet = new ArrayList<>();
                 dataSet.add(lineDataSet);
                 LineData data = new LineData(dataSet);

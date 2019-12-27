@@ -1,12 +1,13 @@
 package com.vaibhav.myweather;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.util.Pair;
-
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,11 +17,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.List;
-
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -46,8 +46,9 @@ public class Dashboard extends AppCompatActivity {
     private TextView windSpeedTextView;
     private TextView windDirectionTextView;
     private TextView visibilityTextView;
-    private Integer toggle = 0;
-    private String city = "", state = "", country = "";
+    private Integer toggle = 0, owmApiRequestComplete = 0, airVisualApiRequestComplete = 0;
+    private String city = "", state = "", country = "", changed = "";
+    private Button forecastButton;
 
     public interface OpenWeatherMapApi{
         @GET("weather?appid=0c42f7f6b53b244c78a418f4f181282a")
@@ -78,6 +79,7 @@ public class Dashboard extends AppCompatActivity {
             city = extras.getString("city");
             state = extras.getString("state");
             country = extras.getString("country");
+            changed = extras.getString("changed");
             Toast.makeText(getApplicationContext(), city, Toast.LENGTH_SHORT).show();
         }
 
@@ -191,6 +193,9 @@ public class Dashboard extends AppCompatActivity {
                         weatherIconImageView.setImageResource(R.drawable.mist);
                         break;
                 }
+
+                owmApiRequestComplete = 1;
+                saveDetailsDialog();
                 /*
                 List<WeatherItem> weatherItem = response.body().getWeather();
                 //apiTextView.setText(String.valueOf(weatherList.getBase()));
@@ -277,6 +282,8 @@ public class Dashboard extends AppCompatActivity {
                     aqiTextView.setText(getString(R.string.citynotfound));
                 }
 
+                airVisualApiRequestComplete = 1;
+                saveDetailsDialog();
             }
 
             @Override
@@ -324,8 +331,22 @@ public class Dashboard extends AppCompatActivity {
             }
         });
 
-        Button forecast = findViewById(R.id.fiveDayForecastBtn);
-        forecast.setOnClickListener(new View.OnClickListener() {
+        forecastButton = findViewById(R.id.fiveDayForecastBtn);
+        changeCityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ActivityOptionsCompat activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        Dashboard.this,
+                        androidx.core.util.Pair.create(settingFAB, getString(R.string.logoFABTransition)),
+                        androidx.core.util.Pair.create(forecastButton, getString(R.string.buttonTransition)));
+
+                Intent mainActivityIntent = new Intent(getApplicationContext(), MainActivity.class);
+                mainActivityIntent.putExtra("fromDashboard", "fromDashboard");
+                startActivity(mainActivityIntent, activityOptions.toBundle());
+            }
+        });
+
+        forecastButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Forecast.class);
@@ -345,5 +366,51 @@ public class Dashboard extends AppCompatActivity {
                 startActivity(intent, activityOptionsCompat.toBundle());
             }
         });
+    }
+
+    private class MyException extends Exception{
+        private MyException(String s){
+            System.out.println("MyException: " + s);
+        }
+    }
+
+    private void saveDetailsDialog(){
+        try{
+            FileInputStream fileOutputStream = openFileInput("cityInfo.txt");
+            if(changed.equals("true")){
+                throw new MyException("City changed");
+            }
+        }
+        catch (Exception e) {
+            changed = "false";
+            //File is not found, ask if user wants to save the city.
+            if (owmApiRequestComplete == 1 && airVisualApiRequestComplete == 1) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                alertDialogBuilder.setTitle("Save");
+                alertDialogBuilder.setMessage("Do you wish to save this city?\nYou can always change the city later by clicking on app icon above.");
+                alertDialogBuilder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //Saving weather settings in a file
+                        try {
+                            FileOutputStream fileOutputStream = openFileOutput("cityInfo.txt", Context.MODE_PRIVATE);
+                            city+="\n";
+                            state+="\n";
+                            country+="\n";
+                            fileOutputStream.write(city.getBytes());
+                            fileOutputStream.write(state.getBytes());
+                            fileOutputStream.write(country.getBytes());
+                            fileOutputStream.close();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+                alertDialogBuilder.setNegativeButton("No", null);
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+            }
+        }
     }
 }
