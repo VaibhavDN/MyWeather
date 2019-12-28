@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityOptionsCompat;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,8 +30,10 @@ public class MainActivity extends AppCompatActivity {
         try{
             //If main activity is started from dashboard don't redirect it back to dashboard.
             extras = getIntent().getExtras().getString("fromDashboard");
+            Log.d("MainActivity", extras);
         }
         catch (Exception e){
+            extras = "";
             e.printStackTrace();
         }
 

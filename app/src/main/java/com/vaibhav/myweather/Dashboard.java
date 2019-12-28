@@ -378,6 +378,8 @@ public class Dashboard extends AppCompatActivity {
         try{
             FileInputStream fileOutputStream = openFileInput("cityInfo.txt");
             if(changed.equals("true")){
+                owmApiRequestComplete = 1;
+                airVisualApiRequestComplete = 1;
                 throw new MyException("City changed");
             }
         }
