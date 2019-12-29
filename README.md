@@ -11,9 +11,10 @@ Weather app for android phones.
     
     
 #### Screenshot
-<details><summary>Click here</summary>
+<details><summary>Click here to view</summary>
 <p align="center">
-<img width="100%" src="https://github.com/VaibhavDN/MyWeather/blob/master/Gif/Activities2.png">
+    <img width="100%" src="https://github.com/VaibhavDN/MyWeather/blob/master/Gif/Activities2.png">
+    <h3 align="center"><a href="https://github.com/VaibhavDN/MyWeather/blob/master/Gif/MyWeather%20(Low%20quality).gif">View GIF here</a></h3>
 </p>
 </details>
 
