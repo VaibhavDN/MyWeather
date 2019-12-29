@@ -3,7 +3,7 @@ Weather app for android phones.
 
 #### Requirements:
 
-    1. JDK 8 (Enabled in build)
+    1. Java 8 (Enabled in build)
     2. Permissions required: INTERNET
     3. Target Sdk Version: 29
     4. Minimum SDK version: 24 (Android 7)
