@@ -163,6 +163,21 @@ public class Forecast extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed(){
+        //Make them invisible when leaving the activity
+        TextView chartHeadingTextView = findViewById(R.id.chartHeadingTextView);
+        chartHeadingTextView.setVisibility(View.INVISIBLE);
+
+        LineChart chart = findViewById(R.id.weatherChart);
+        chart.setVisibility(View.INVISIBLE);
+
+        TextView swipeTextView = findViewById(R.id.swipeHint);
+        swipeTextView.setVisibility(View.INVISIBLE);
+
+        super.onBackPressed();  //To actually go back
+    }
+
     public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
 
         private ArrayList<String> dayListRV = new ArrayList<>();
