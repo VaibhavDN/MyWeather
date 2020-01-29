@@ -1,6 +1,8 @@
 # MyWeather
 Weather app for android phones.
 
+Uses Openweathermap and Airvisual APIs.
+
 #### Requirements:
 
     1. Java 8 (Enabled in build)
